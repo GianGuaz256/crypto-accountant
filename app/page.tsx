@@ -1,101 +1,157 @@
-import Image from "next/image";
+'use client';
+
+import { HeroScrollDemo } from '@/components/ui/hero-scroll-demo';
+import { Feature108 } from '@/components/blocks/shadcnblocks-com-feature108';
+import { Feature197 } from '@/components/blocks/accordion-feature-section';
+import { Zap, Pointer, Layout } from 'lucide-react';
+import Link from 'next/link';
+import ConnectWalletButton from '@/components/ConnectWalletButton';
 
 export default function Home() {
+  // Custom data for our Feature108 component
+  const featureData = {
+    badge: "My Crypto Accounting App",
+    heading: "Track Your Crypto Transactions With Ease",
+    description: "Connect your wallet, organize your transactions, and get insights - all in one place.",
+    tabs: [
+      {
+        value: "tab-1",
+        icon: <Zap className="h-auto w-4 shrink-0" />,
+        label: "Connect Wallet",
+        content: {
+          badge: "Easy Setup",
+          title: "Connect your Ethereum wallet in seconds.",
+          description:
+            "Simply connect your wallet to get started. We'll automatically fetch your transaction history and organize it for you. No complicated setup required.",
+          buttonText: "Connect Wallet",
+          buttonAction: "/wallet",
+          imageSrc:
+            "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2070&auto=format&fit=crop",
+          imageAlt: "Ethereum wallet connection",
+        },
+      },
+      {
+        value: "tab-2",
+        icon: <Pointer className="h-auto w-4 shrink-0" />,
+        label: "Track Transactions",
+        content: {
+          badge: "Powerful Features",
+          title: "Organize and categorize your crypto activity.",
+          description:
+            "View your complete transaction history, label transactions, add notes, and categorize them for better organization. Perfect for tax preparation and financial tracking.",
+          buttonText: "View Features",
+          buttonAction: "/transactions",
+          imageSrc:
+            "https://images.unsplash.com/photo-1621501103258-d0882c0cd353?q=80&w=2070&auto=format&fit=crop",
+          imageAlt: "Transaction tracking",
+        },
+      },
+      {
+        value: "tab-3",
+        icon: <Layout className="h-auto w-4 shrink-0" />,
+        label: "AI Insights",
+        content: {
+          badge: "Smart Analysis",
+          title: "Get AI-powered insights for better decisions.",
+          description:
+            "Our AI technology analyzes your transaction patterns and provides personalized insights and suggestions to help you make better financial decisions with your crypto assets.",
+          buttonText: "Learn More",
+          buttonAction: "/insights",
+          imageSrc:
+            "https://images.unsplash.com/photo-1634711853733-b831e7ccef7d?q=80&w=1974&auto=format&fit=crop",
+          imageAlt: "AI insights for crypto",
+        },
+      },
+    ],
+  };
+  
+  // Custom data for our Feature197 component
+  const problemsData = {
+    features: [
+      {
+        id: 1,
+        title: "No More Excel for Crypto Transactions",
+        image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2070&auto=format&fit=crop",
+        description:
+          "Stop struggling with complex Excel spreadsheets to track your crypto transactions. Our platform automatically imports and organizes all your transaction data in one centralized location, saving you hours of manual work.",
+      },
+      {
+        id: 2,
+        title: "Multi-Wallet Transaction Monitoring",
+        image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2070&auto=format&fit=crop",
+        description:
+          "View transactions from all your wallets in a single dashboard. No more switching between multiple tools and services to get a complete picture of your crypto activity. Perfect for individuals managing multiple addresses or organizations tracking multiple accounts.",
+      },
+      {
+        id: 3,
+        title: "AI-Powered Transaction Labeling",
+        image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2070&auto=format&fit=crop",
+        description:
+          "Our AI technology automatically analyzes and categorizes your transactions with accurate labels and descriptions. Stop wasting time manually entering details for each transaction. The system learns from your patterns to provide increasingly accurate categorizations.",
+      },
+      {
+        id: 4,
+        title: "Accountant-Friendly Reporting",
+        image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2070&auto=format&fit=crop",
+        description:
+          "Generate professional, structured reports that accountants and lawyers can easily understand. Export clean, organized transaction histories in multiple formats including PDF. Save time and avoid miscommunication when working with financial professionals.",
+      },
+      {
+        id: 5,
+        title: "Privacy-Focused Design",
+        image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2070&auto=format&fit=crop",
+        description:
+          "All your data is stored locally in your browser. We never store your wallet keys or sensitive financial data on our servers. Get all the benefits of powerful crypto accounting tools without compromising your security or privacy.",
+      },
+    ],
+  };
+  
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="min-h-screen pt-0 mt-[-100px]">
+      {/* Hero section with scroll animation */}
+      <div className="pb-0 pt-0">
+        <HeroScrollDemo />
+      </div>
+      
+      {/* Signup CTA section */}
+      <div className="bg-gradient-to-r from-blue-500 to-purple-600 py-20">
+        <div className="max-w-6xl mx-auto text-center px-4">
+          <h2 className="text-4xl font-bold text-white mb-6">Ready to Take Control of Your Crypto Finances?</h2>
+          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+            Join thousands of crypto enthusiasts who are already simplifying their accounting and 
+            getting smarter insights about their investments.
+          </p>
+          <div className="flex flex-col md:flex-row gap-4 mt-8">
+            <Link
+              href="/dashboard"
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center"
+            >
+              Go to Dashboard
+            </Link>
+            <ConnectWalletButton variant="outline" size="lg" iconOnly={false} />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </div>
+      
+      {/* Feature108 component */}
+      <div className="mt-10">
+        <Feature108 {...featureData} />
+      </div>
+      
+      {/* Feature197 component - Problems We Solve */}
+      <div className="mt-40">
+        <Feature197 {...problemsData} />
+      </div>
+
+      
+      {/* Footer */}
+      <footer className="bg-white dark:bg-black p-8 border-t border-gray-200 dark:border-gray-800">
+        <div className="max-w-6xl mx-auto text-center">
+          <p className="text-gray-600 dark:text-gray-400">
+            © {new Date().getFullYear()} My Crypto Accounting App. All rights reserved.
+          </p>
+        </div>
       </footer>
-    </div>
+    </main>
   );
 }
