@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import {
   ChevronDown,
   CreditCard,
@@ -17,6 +17,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import ConnectWalletButton from '@/components/ConnectWalletButton';
+import { LogoutConfirmModal } from '@/components/LogoutConfirmModal';
 
 export default function DashboardLayout({
   children,
@@ -24,9 +25,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const router = useRouter();
   const [blockchainOpen, setBlockchainOpen] = useState(true);
   const [collapsed, setCollapsed] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   
   // Load sidebar state from localStorage on component mount
   useEffect(() => {
@@ -41,13 +42,14 @@ export default function DashboardLayout({
     localStorage.setItem('sidebarCollapsed', String(collapsed));
   }, [collapsed]);
   
-  // Handle logout
-  const handleLogout = () => {
-    // In a real app, you would clear auth tokens, cookies, etc.
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    // Redirect to home page
-    router.push('/');
+  // Handle logout button click
+  const handleLogoutClick = () => {
+    setShowLogoutModal(true);
+  };
+  
+  // Handle logout modal close
+  const handleCloseLogoutModal = () => {
+    setShowLogoutModal(false);
   };
   
   // Navigation items
@@ -244,7 +246,7 @@ export default function DashboardLayout({
               {!collapsed && <span>Settings</span>}
             </Link>
             <button
-              onClick={handleLogout}
+              onClick={handleLogoutClick}
               className={`flex items-center py-2 ${collapsed ? 'px-0 justify-center w-full' : 'px-3'} rounded-md text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700`}
             >
               <LogOut className={`h-5 w-5 ${collapsed ? '' : 'mr-3'}`} />
@@ -296,6 +298,12 @@ export default function DashboardLayout({
           {children}
         </div>
       </main>
+      
+      {/* Logout Confirmation Modal */}
+      <LogoutConfirmModal 
+        isOpen={showLogoutModal} 
+        onClose={handleCloseLogoutModal} 
+      />
     </div>
   );
 } 

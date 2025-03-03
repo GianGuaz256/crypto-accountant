@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { WalletProvider } from './contexts/WalletContext';
+import { AuthProvider } from './contexts/AuthContext';
 import { WagmiProvider } from './providers/WagmiProvider';
 
 const geistSans = Geist({
@@ -70,10 +71,12 @@ export default function RootLayout({
           enableSystem
         >
           <WagmiProvider>
-            <WalletProvider>
-              {children}
-              <Toaster />
-            </WalletProvider>
+            <AuthProvider>
+              <WalletProvider>
+                {children}
+                <Toaster />
+              </WalletProvider>
+            </AuthProvider>
           </WagmiProvider>
         </ThemeProvider>
       </body>

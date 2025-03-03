@@ -4,8 +4,8 @@ import { HeroScrollDemo } from '@/components/ui/hero-scroll-demo';
 import { Feature108 } from '@/components/blocks/shadcnblocks-com-feature108';
 import { Feature197 } from '@/components/blocks/accordion-feature-section';
 import { Zap, Pointer, Layout } from 'lucide-react';
-import Link from 'next/link';
-import ConnectWalletButton from '@/components/ConnectWalletButton';
+import { Header1 } from '@/components/ui/header';
+import { CTA } from '@/components/ui/call-to-action';
 
 export default function Home() {
   // Custom data for our Feature108 component
@@ -107,51 +107,36 @@ export default function Home() {
   };
   
   return (
-    <main className="min-h-screen pt-0 mt-[-100px]">
-      {/* Hero section with scroll animation */}
-      <div className="pb-0 pt-0">
-        <HeroScrollDemo />
-      </div>
-      
-      {/* Signup CTA section */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 py-20">
-        <div className="max-w-6xl mx-auto text-center px-4">
-          <h2 className="text-4xl font-bold text-white mb-6">Ready to Take Control of Your Crypto Finances?</h2>
-          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-            Join thousands of crypto enthusiasts who are already simplifying their accounting and 
-            getting smarter insights about their investments.
-          </p>
-          <div className="flex flex-col md:flex-row gap-4 mt-8">
-            <Link
-              href="/dashboard"
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center"
-            >
-              Go to Dashboard
-            </Link>
-            <ConnectWalletButton variant="outline" size="lg" iconOnly={false} />
-          </div>
+    <>
+      <Header1 />
+      <main className="min-h-screen pt-24 mt-0">
+        {/* Hero section with scroll animation */}
+        <div className="pb-0 pt-0">
+          <HeroScrollDemo />
         </div>
-      </div>
-      
-      {/* Feature108 component */}
-      <div className="mt-10">
-        <Feature108 {...featureData} />
-      </div>
-      
-      {/* Feature197 component - Problems We Solve */}
-      <div className="mt-40">
-        <Feature197 {...problemsData} />
-      </div>
+        
+        {/* Feature108 component */}
+        <div className="mt-10">
+          <Feature108 {...featureData} />
+        </div>
+        
+        {/* Feature197 component - Problems We Solve */}
+        <div className="mt-40">
+          <Feature197 {...problemsData} />
+        </div>
 
-      
-      {/* Footer */}
-      <footer className="bg-white dark:bg-black p-8 border-t border-gray-200 dark:border-gray-800">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-gray-600 dark:text-gray-400">
-            © {new Date().getFullYear()} My Crypto Accounting App. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </main>
+        {/* CTA Section */}
+        <CTA />
+        
+        {/* Footer */}
+        <footer className="bg-white dark:bg-black p-8 border-t border-gray-200 dark:border-gray-800">
+          <div className="max-w-6xl mx-auto text-center">
+            <p className="text-gray-600 dark:text-gray-400">
+              © {new Date().getFullYear()} My Crypto Accounting App. All rights reserved.
+            </p>
+          </div>
+        </footer>
+      </main>
+    </>
   );
 }
